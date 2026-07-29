@@ -13,7 +13,7 @@ namespace ConsoleGacha
 
         public void Run()
         {
-            Console.Title = "Console Gacha";
+            Console.Title = "Silly Gacha";
 
             bool running = true;
 
