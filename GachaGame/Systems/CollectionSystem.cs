@@ -1,32 +1,57 @@
 ﻿using GachaGame.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace GachaGame.Systems
 {
     public class CollectionSystem
     {
-        private readonly List<OwnedCharacter> collection = new();
+        private readonly PlayerData playerData;
 
-        public IReadOnlyList<OwnedCharacter> Collection => collection;
 
-        public void AddCharacter(Character character)
+        public CollectionSystem(PlayerData playerData)
         {
-            // Don't store 3-star characters
+            this.playerData = playerData;
+        }
+
+
+        public IReadOnlyList<OwnedCharacter> Collection => playerData.Characters;
+
+
+        public int AddCharacter(Character character)
+        {
+            // Ignore 3-star characters
             if (character.Rarity == Rarity.ThreeStar)
-                return;
+                return 0;
 
-            var ownedCharacter = collection.FirstOrDefault(c => c.Character.Name == character.Name);
 
+            var ownedCharacter = playerData.Characters
+                .FirstOrDefault(c => c.Character.Name == character.Name);
+
+
+            // First time owning character
             if (ownedCharacter == null)
             {
-                collection.Add(new OwnedCharacter(character));
+                playerData.Characters.Add(new OwnedCharacter(character));
+                return 0;
             }
-            else if (ownedCharacter.Copies < 7)
+
+
+            // Already C6, give duplicate reward
+            if (ownedCharacter.Copies >= 7)
             {
-                ownedCharacter.Copies++;
+                if (character.Rarity == Rarity.FourStar)
+                    return 10 * 160;
+
+                if (character.Rarity == Rarity.FiveStar)
+                    return 40 * 160;
             }
+
+
+            // Increase constellation
+            ownedCharacter.Copies++;
+
+            return 0;
         }
     }
 }

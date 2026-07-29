@@ -1,5 +1,4 @@
-﻿
-namespace ConsoleGacha
+﻿namespace GachaGame
 {
     internal class Program
     {

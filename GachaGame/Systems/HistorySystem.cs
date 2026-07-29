@@ -1,15 +1,29 @@
 ﻿using GachaGame.Models;
-using GachaGame.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GachaGame.Systems
 {
     public class HistorySystem
     {
-        private readonly List<PullHistory> history = new();
+        //private readonly List<PullHistory> history = new();
+        private readonly PlayerData playerData;
         private int totalPulls = 0;
 
-        public IReadOnlyList<PullHistory> History => history;
+        public HistorySystem(PlayerData playerData)
+        {
+            this.playerData = playerData;
+        }
+
+        public List<PullHistory> History
+        {
+            get
+            {
+                return playerData.History;
+            }
+        }
+
+        //public IReadOnlyList<PullHistory> History => playerData.History;
 
         public void AddPull(Character pulled)
         {
@@ -22,11 +36,11 @@ namespace GachaGame.Systems
             else if (pulled.Rarity == Rarity.FourStar)
                 pity = pulled.PulledAtPity4;
 
-            history.Add(new PullHistory(pulled, totalPulls, pity));
+            playerData.History.Add(new PullHistory(pulled, totalPulls, pity));
 
             // Keep only the newest 400 pulls
-            if (history.Count > 400)
-                history.RemoveAt(0);
+            if (playerData.History.Count > 400)
+                playerData.History.RemoveAt(0);
         }
     }
 }

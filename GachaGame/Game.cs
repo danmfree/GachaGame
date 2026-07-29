@@ -1,15 +1,47 @@
-﻿using GachaGame.Gacha;
+﻿using System.Linq;
+using GachaGame.Gacha;
 using GachaGame.Models;
 using GachaGame.Systems;
 using GachaGame.UI;
 
-namespace ConsoleGacha
+
+namespace GachaGame
 {
     public class Game
     {
-        private readonly Banner banner = new();
-        private readonly CollectionSystem collectionSystem = new();
-        private readonly HistorySystem historySystem = new();
+        private readonly SaveSystem saveSystem;
+
+        private readonly PlayerData playerData;
+
+        private readonly CurrencySystem currencySystem;
+        private readonly RewardSystem rewardSystem;
+        private readonly Banner banner;
+
+        private readonly CollectionSystem collectionSystem;
+        private readonly HistorySystem historySystem;
+
+        public Game()
+        {
+            saveSystem = new SaveSystem();
+
+            playerData = saveSystem.Load();
+
+            currencySystem = new CurrencySystem(playerData);
+
+            rewardSystem = new RewardSystem(
+                currencySystem,
+                playerData
+            );
+
+            banner = new Banner(playerData);
+
+
+            collectionSystem = new CollectionSystem(playerData);
+            historySystem = new HistorySystem(playerData);
+        }
+
+        private const int SinglePullCost = 160;
+        private const int TenPullCost = 1600;
 
         public void Run()
         {
@@ -21,11 +53,17 @@ namespace ConsoleGacha
             {
                 Console.Clear();
 
+                Console.WriteLine($"Moon Tears: {currencySystem.Amount}");
+                Console.WriteLine();
+
                 Console.WriteLine("1. Single Pull");
                 Console.WriteLine("2. Pull x10");
                 Console.WriteLine("3. Character Collection");
                 Console.WriteLine("4. Pull History");
-                Console.WriteLine("5. Exit");
+                Console.WriteLine("5. Claim Daily Reward");
+                Console.WriteLine("6. Play Moon Trial");
+                Console.WriteLine("7. Reset Save");
+                Console.WriteLine("8. Exit");
 
                 Console.Write("\nChoice: ");
 
@@ -48,6 +86,23 @@ namespace ConsoleGacha
                         break;
 
                     case "5":
+                        rewardSystem.ClaimDailyReward();
+                        saveSystem.Save(playerData);
+                        Console.ReadLine();
+                        break;
+
+                    case "6":
+                        rewardSystem.PlayMoonTrial();
+                        saveSystem.Save(playerData);
+                        Console.ReadLine();
+                        break;
+
+                    case "7":
+                        ResetGame();
+                        break;
+
+                    case "8":
+                        saveSystem.Save(playerData);
                         running = false;
                         break;
                 }
@@ -58,7 +113,26 @@ namespace ConsoleGacha
 
         private void DoPull(int amount)
         {
+            int cost = amount == 1 ? SinglePullCost : TenPullCost;
+
+            if (!currencySystem.Spend(cost))
+            {
+                Console.Clear();
+                Console.WriteLine("Not enough Moon Tears!");
+                Console.WriteLine();
+
+                Console.WriteLine($"Moon Tears: {currencySystem.Amount}");
+
+                Console.WriteLine();
+                Console.Write("Press Enter to return...");
+                Console.ReadLine();
+                //saveSystem.Save(playerData);
+
+                return;
+            }
+
             var results = new List<Character>();
+            var duplicateMessages = new List<string>();
 
             for (int i = 0; i < amount; i++)
             {
@@ -72,7 +146,30 @@ namespace ConsoleGacha
             foreach (var pulled in results)
             {
                 historySystem.AddPull(pulled);
-                collectionSystem.AddCharacter(pulled);
+
+                int duplicateReward = collectionSystem.AddCharacter(pulled);
+
+                if (duplicateReward > 0)
+                {
+                    currencySystem.Add(duplicateReward);
+
+                    string rewardMessage = "";
+
+                    if (pulled.Rarity == Rarity.FourStar)
+                    {
+                        rewardMessage =
+                            $"{pulled.Name} is already C6!\n" +
+                            $"Received {duplicateReward} Moon Tears.";
+                    }
+                    else if (pulled.Rarity == Rarity.FiveStar)
+                    {
+                        rewardMessage =
+                            $"{pulled.Name} is already C6!\n" +
+                            $"Received {duplicateReward} Moon Tears.";
+                    }
+
+                    duplicateMessages.Add(rewardMessage);
+                }
             }
 
             if (amount == 1)
@@ -97,13 +194,29 @@ namespace ConsoleGacha
 
             ConsoleRenderer.ShowSummary(results, amount);
 
+            if (duplicateMessages.Count > 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("=== Duplicate Rewards ===");
+                Console.WriteLine();
+
+                foreach (var message in duplicateMessages)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine(message);
+                    Console.ResetColor();
+                    Console.WriteLine();
+                }
+            }
+
             Console.WriteLine();
-            Console.WriteLine($"Pity to next 5-star: {banner.Pity5}/{Banner.HardPity5}");
-            Console.WriteLine($"Pity to next 4-star: {banner.Pity4}/{Banner.HardPity4}");
+            Console.WriteLine($"Pity to next 5-star: {playerData.Pity5}/{Banner.HardPity5}");
+            Console.WriteLine($"Pity to next 4-star: {playerData.Pity4}/{Banner.HardPity4}");
 
             Console.WriteLine();
             Console.Write("Press Enter to return...");
             Console.ReadLine();
+            saveSystem.Save(playerData);
         }
 
         private void ShowCollection()
@@ -146,6 +259,7 @@ namespace ConsoleGacha
                 Console.WriteLine();
 
                 var pageEntries = historySystem.History
+                    .AsEnumerable()
                     .Reverse()
                     .Skip(page * 10)
                     .Take(10);
@@ -208,6 +322,34 @@ namespace ConsoleGacha
                     ? "Press Enter for next pull..."
                     : "Press Enter to see summary...");
 
+                Console.ReadLine();
+            }
+        }
+
+        private void ResetGame()
+        {
+            Console.Clear();
+
+            Console.WriteLine("Are you sure you want to reset your account?");
+            Console.WriteLine("Type YES to confirm:");
+
+            string input = Console.ReadLine();
+
+            if (input == "YES")
+            {
+                saveSystem.ResetSave();
+
+                Console.WriteLine();
+                Console.WriteLine("Account reset successfully!");
+                Console.WriteLine("Please restart the game.");
+
+                Console.WriteLine();
+                Console.Write("Press Enter...");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("Reset cancelled.");
                 Console.ReadLine();
             }
         }
