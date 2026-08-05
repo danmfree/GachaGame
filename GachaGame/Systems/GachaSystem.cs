@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
-using GachaGame.Gacha;
+﻿using GachaGame.Gacha;
 using GachaGame.Models;
+using GachaGame.UI;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GachaGame.Systems
 {
@@ -17,6 +19,7 @@ namespace GachaGame.Systems
         private readonly SaveSystem saveSystem;
         private readonly PlayerData playerData;
 
+        private readonly SummonAnimation summonAnimation;
 
         public GachaSystem(
             CurrencySystem currencySystem,
@@ -25,7 +28,8 @@ namespace GachaGame.Systems
             CollectionSystem collectionSystem,
             HistorySystem historySystem,
             SaveSystem saveSystem,
-            PlayerData playerData)
+            PlayerData playerData,
+            SummonAnimation summonAnimation)
         {
             this.currencySystem = currencySystem;
 
@@ -37,6 +41,8 @@ namespace GachaGame.Systems
 
             this.saveSystem = saveSystem;
             this.playerData = playerData;
+
+            this.summonAnimation = summonAnimation;
         }
 
         public List<Character> Pull(int amount, bool limitedBannerPull)
@@ -61,6 +67,13 @@ namespace GachaGame.Systems
                     results.Add(standardBanner.Pull());
                 }
             }
+
+            Character highestRarityCharacter =
+                results
+                .OrderByDescending(x => x.Rarity)
+                .First();
+
+            summonAnimation.PlaySummon(results);
 
             foreach (var pulled in results)
             {

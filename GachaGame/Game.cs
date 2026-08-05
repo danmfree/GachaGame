@@ -24,6 +24,8 @@ namespace GachaGame
         private CollectionSystem collectionSystem;
         private HistorySystem historySystem;
 
+        SummonAnimation summonAnimation = new SummonAnimation();
+
         private Menu menu;
 
         public Game()
@@ -52,7 +54,8 @@ namespace GachaGame
                 collectionSystem,
                 historySystem,
                 saveSystem,
-                playerData
+                playerData,
+                summonAnimation
             );
 
             menu = new Menu(
@@ -207,7 +210,8 @@ namespace GachaGame
                 collectionSystem,
                 historySystem,
                 saveSystem,
-                playerData
+                playerData,
+                summonAnimation
             );
 
 

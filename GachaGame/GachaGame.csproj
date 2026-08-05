@@ -7,4 +7,210 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Assets\Animations\BlueReveal\frame01.txt" />
+    <None Remove="Assets\Animations\BlueReveal\frame02.txt" />
+    <None Remove="Assets\Animations\BlueReveal\frame03.txt" />
+    <None Remove="Assets\Animations\GoldReveal\frame01.txt" />
+    <None Remove="Assets\Animations\GoldReveal\frame02.txt" />
+    <None Remove="Assets\Animations\GoldReveal\frame03.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame01.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame02.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame03.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame04.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame05.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame06.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame07.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame08.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame09.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame10.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame11.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame12.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame13.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame14.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame15.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame16.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame17.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame18.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame19.txt" />
+    <None Remove="Assets\Animations\MoonRift\frame20.txt" />
+    <None Remove="Assets\Animations\PurpleReveal\frame01.txt" />
+    <None Remove="Assets\Animations\PurpleReveal\frame02.txt" />
+    <None Remove="Assets\Animations\PurpleReveal\frame03.txt" />
+    <None Remove="Assets\SplashArt\Aaron.txt" />
+    <None Remove="Assets\SplashArt\AbyssalDream.txt" />
+    <None Remove="Assets\SplashArt\ApprenticeColl.txt" />
+    <None Remove="Assets\SplashArt\Berk.txt" />
+    <None Remove="Assets\SplashArt\Doran.txt" />
+    <None Remove="Assets\SplashArt\FarmhandJoji.txt" />
+    <None Remove="Assets\SplashArt\Garrick.txt" />
+    <None Remove="Assets\SplashArt\Kael.txt" />
+    <None Remove="Assets\SplashArt\Lira.txt" />
+    <None Remove="Assets\SplashArt\Maria.txt" />
+    <None Remove="Assets\SplashArt\Mira.txt" />
+    <None Remove="Assets\SplashArt\NatsukiSubaru.txt" />
+    <None Remove="Assets\SplashArt\Nyra.txt" />
+    <None Remove="Assets\SplashArt\PeddlerOskar.txt" />
+    <None Remove="Assets\SplashArt\Ronan.txt" />
+    <None Remove="Assets\SplashArt\SameSaturn.txt" />
+    <None Remove="Assets\SplashArt\ScoutRill.txt" />
+    <None Remove="Assets\SplashArt\SquireBeb.txt" />
+    <None Remove="Assets\SplashArt\Sylva.txt" />
+    <None Remove="Assets\SplashArt\Talon.txt" />
+    <None Remove="Assets\SplashArt\WandererFen.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Animations\BlueReveal\frame01.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\BlueReveal\frame02.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\BlueReveal\frame03.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\GoldReveal\frame01.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\GoldReveal\frame02.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\GoldReveal\frame03.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame01.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame02.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame03.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame04.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame05.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame06.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame07.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame08.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame09.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame10.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame11.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame12.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame13.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame14.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame15.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame16.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame17.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame18.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame19.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\MoonRift\frame20.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\PurpleReveal\frame01.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\PurpleReveal\frame02.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Animations\PurpleReveal\frame03.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\Aaron.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\AbyssalDream.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\ApprenticeColl.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\Berk.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\Doran.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\FarmhandJoji.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\Garrick.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\Kael.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\Lira.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\Maria.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\Mira.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\NatsukiSubaru.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\Nyra.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\PeddlerOskar.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\Ronan.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\SameSaturn.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\ScoutRill.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\SquireBeb.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\Sylva.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\Talon.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashArt\WandererFen.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

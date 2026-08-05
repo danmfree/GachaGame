@@ -317,7 +317,7 @@ namespace GachaGame.UI
 
             Console.Clear();
 
-            LoadingAnimation.ShowLoadingBar(results);
+            //LoadingAnimation.ShowLoadingBar(results);
 
 
             if (amount == 1)
@@ -333,10 +333,10 @@ namespace GachaGame.UI
                 Console.Write("Press Enter to continue...");
                 Console.ReadLine();
             }
-            else
-            {
-                ShowPullsOneByOne(results);
-            }
+            //else
+            //{
+            //    ShowPullsOneByOne(results);
+            //}
 
 
             Console.Clear();
