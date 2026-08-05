@@ -8,26 +8,40 @@ namespace GachaGame.Systems
     {
         //private readonly List<PullHistory> history = new();
         private readonly PlayerData playerData;
-        private int totalPulls = 0;
+        
+        // Not needed as we save in playerData.cs
+        //private int totalPulls = 0;
 
         public HistorySystem(PlayerData playerData)
         {
             this.playerData = playerData;
         }
 
-        public List<PullHistory> History
-        {
-            get
-            {
-                return playerData.History;
-            }
-        }
+        // Old history property
+        //public List<PullHistory> History
+        //{
+        //    get
+        //    {
+        //        return playerData.History;
+        //    }
+        //}
 
         //public IReadOnlyList<PullHistory> History => playerData.History;
 
-        public void AddPull(Character pulled)
+        public void AddPull(Character pulled, bool limitedBanner)
         {
-            totalPulls++;
+            int pullNumber;
+
+            if (limitedBanner)
+            {
+                playerData.LimitedPullCount++;
+                pullNumber = playerData.LimitedPullCount;
+            }
+            else
+            {
+                playerData.StandardPullCount++;
+                pullNumber = playerData.StandardPullCount;
+            }
 
             int? pity = null;
 
@@ -36,11 +50,22 @@ namespace GachaGame.Systems
             else if (pulled.Rarity == Rarity.FourStar)
                 pity = pulled.PulledAtPity4;
 
-            playerData.History.Add(new PullHistory(pulled, totalPulls, pity));
+            List<PullHistory> history =
+                limitedBanner
+                ? playerData.LimitedHistory
+                : playerData.StandardHistory;
 
-            // Keep only the newest 400 pulls
-            if (playerData.History.Count > 400)
-                playerData.History.RemoveAt(0);
+            history.Add(new PullHistory(pulled, pullNumber, pity));
+           
+            if (history.Count > 400)
+                history.RemoveAt(0);
+        }
+
+        public List<PullHistory> GetHistory(bool limitedBanner)
+        {
+            return limitedBanner
+                ? playerData.LimitedHistory
+                : playerData.StandardHistory;
         }
     }
 }

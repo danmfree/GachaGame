@@ -43,6 +43,6 @@ namespace GachaGame .Systems
             PlayerData newPlayer = new PlayerData();
 
             Save(newPlayer);
-        }
+        } 
     }
 }

@@ -17,6 +17,15 @@ namespace GachaGame.Systems
             this.playerData = playerData;
         }
 
+        private void ResetMoonTrialIfNewDay()
+        {
+            if (playerData.LastMoonTrialDate.Date != DateTime.Today)
+            {
+                playerData.MoonTrialAttempts = 0;
+                playerData.LastMoonTrialDate = DateTime.Today;
+            }
+        }
+
         public void ClaimDailyReward()
         {
             DateTime today = DateTime.Today;
@@ -37,29 +46,59 @@ namespace GachaGame.Systems
             Console.WriteLine($"+{reward} Moon Tears");
         }
 
-
         public void PlayMoonTrial()
         {
+            ResetMoonTrialIfNewDay();
+
+            if (playerData.MoonTrialAttempts >= 3)
+            {
+                Console.WriteLine("You have used all 3 Moon Trials today.");
+                return;
+            }
+
+
+            playerData.MoonTrialAttempts++;
+
+
+            Random random = new Random();
+
+            int choice;
+
+            while (true)
+            {
+                Console.Write("Choose a number (1-5): ");
+
+                if (int.TryParse(Console.ReadLine(), out choice))
+                {
+                    if (choice >= 1 && choice <= 5)
+                    {
+                        break;
+                    }
+                }
+
+                Console.WriteLine("Invalid choice. Please choose a number between 1 and 5.");
+            }
+
             int answer = random.Next(1, 6);
 
-            Console.Write("Guess a number (1-5): ");
 
-            int guess = int.Parse(Console.ReadLine());
+            Console.WriteLine($"The answer was {answer}");
 
-            if (guess == answer)
+
+            if (choice == answer)
             {
                 currencySystem.Add(1600);
-
-                Console.WriteLine("Correct!");
-                Console.WriteLine("+1600 Moon Tears");
+                Console.WriteLine("Correct! You received 1600 Moon Tears.");
             }
             else
             {
                 currencySystem.Add(800);
-
-                Console.WriteLine($"Wrong! The answer was {answer}");
-                Console.WriteLine("+800 Moon Tears");
+                Console.WriteLine("Wrong! You received 800 Moon Tears.");
             }
+
+
+            Console.WriteLine(
+                $"Moon Trials remaining: {3 - playerData.MoonTrialAttempts}");
         }
     }
 }
